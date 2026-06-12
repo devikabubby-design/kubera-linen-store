@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KUBERA LINEN STORE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e8dcc8;
+      --linen: #d4c4a8;
+      --warm-brown: #8b6f47;
+      --dark-brown: #3d2b1f;
+      --charcoal: #2c2c2c;
+      --gold: #c9a84c;
+      --white: #fdfaf5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(253,250,245,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+      transition: all 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; letter-spacing: 0.15em;
+      color: var(--dark-brown); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--charcoal);
+      position: relative; transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--warm-brown); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--dark-brown); color: var(--cream) !important;
+      padding: 0.55rem 1.4rem; letter-spacing: 0.15em;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--warm-brown); color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      background: var(--white);
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+    }
+    .hero-left::before {
+      content: 'KUBERA';
+      position: absolute; top: 12%; left: 4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem; font-weight: 300; color: var(--sand);
+      letter-spacing: 0.2em; opacity: 0.5; z-index: 0; line-height: 1;
+      user-select: none;
+    }
+    .hero-tag {
+      font-size: 0.72rem; font-weight: 400; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem; position: relative; z-index: 1;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--dark-brown);
+      position: relative; z-index: 1;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-title em { font-style: italic; color: var(--warm-brown); }
+    .hero-subtitle {
+      margin-top: 1.5rem;
+      font-size: 0.95rem; font-weight: 300; line-height: 1.8;
+      color: #666; max-width: 400px;
+      position: relative; z-index: 1;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; margin-top: 2.5rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--dark-brown); color: var(--cream);
+      padding: 0.9rem 2.2rem; text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--warm-brown); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid var(--dark-brown); color: var(--dark-brown);
+      padding: 0.9rem 2.2rem; text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--dark-brown); color: var(--cream); }
+
+    .hero-right {
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-visual {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0; position: relative;
+    }
+    .fabric-swatch-stack {
+      display: flex; gap: 0; position: relative;
+      animation: fadeIn 1.2s 0.4s ease both;
+    }
+    .swatch {
+      width: 90px; height: 340px;
+      transition: transform 0.4s;
+      cursor: default;
+    }
+    .swatch:hover { transform: translateY(-16px) scale(1.04); z-index: 2; }
+    .swatch-1 { background: linear-gradient(160deg, #2c2c2c 0%, #4a4a4a 100%); }
+    .swatch-2 { background: linear-gradient(160deg, #5c4a3a 0%, #8b6f47 100%); }
+    .swatch-3 { background: linear-gradient(160deg, #c9a84c 0%, #e8c97a 100%); }
+    .swatch-4 { background: linear-gradient(160deg, #e8dcc8 0%, #f5f0e8 100%); border: 1px solid #d4c4a8; }
+    .swatch-5 { background: linear-gradient(160deg, #3a5a4a 0%, #5c8a6a 100%); }
+
+    .hero-badge {
+      position: absolute; bottom: 2.5rem; right: 2.5rem;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: var(--dark-brown); color: var(--cream);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; animation: spin 20s linear infinite;
+    }
+    .hero-badge-inner {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem; line-height: 1.3; font-style: italic;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--dark-brown); padding: 0.85rem 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem; white-space: nowrap;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-item {
+      font-size: 0.72rem; font-weight: 400; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--cream); flex-shrink: 0;
+    }
+    .marquee-dot { color: var(--gold); }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center; padding: 5rem 2rem 3rem;
+    }
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300;
+      color: var(--dark-brown); line-height: 1.1;
+    }
+    .section-title em { font-style: italic; }
+    .section-line {
+      width: 50px; height: 1px; background: var(--gold);
+      margin: 1.5rem auto 0;
+    }
+
+    /* ── CATEGORIES ── */
+    .categories { padding: 2rem 4rem 5rem; }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+    }
+    .cat-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      aspect-ratio: 3/4;
+      transition: transform 0.4s;
+    }
+    .cat-card:hover { transform: translateY(-6px); }
+    .cat-card:hover .cat-overlay { opacity: 1; }
+    .cat-card:hover .cat-img { transform: scale(1.06); }
+
+    .cat-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Stylized fabric-like backgrounds for each category */
+    .cat-bg-1 {
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 40%, #3d3020 100%);
+      height: 100%; display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .cat-bg-1::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 6px);
+    }
+    .cat-bg-2 {
+      background: linear-gradient(135deg, #5c4a3a 0%, #8b6f47 60%, #6b4f2f 100%);
+      height: 100%; display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .cat-bg-2::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(255,255,255,0.04) 4px, rgba(255,255,255,0.04) 8px);
+    }
+    .cat-bg-3 {
+      background: linear-gradient(135deg, #c8b89a 0%, #e8dcc8 50%, #d4c4a8 100%);
+      height: 100%; display: flex; align-items: center; justify-content: center;
+    }
+    .cat-bg-4 {
+      background: linear-gradient(135deg, #4a5c6a 0%, #2c3e50 60%, #3a4a5a 100%);
+      height: 100%; display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .cat-bg-4::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 5px, rgba(255,255,255,0.03) 5px, rgba(255,255,255,0.03) 6px);
+    }
+    .cat-bg-5 {
+      background: linear-gradient(135deg, #7a8a6a 0%, #5a6e4a 50%, #3a4e2a 100%);
+      height: 100%; display: flex; align-items: center; justify-content: center;
+    }
+
+    .cat-icon {
+      font-size: 3.5rem; opacity: 0.7;
+    }
+
+    .cat-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(30,18,8,0.85) 0%, rgba(30,18,8,0.2) 60%, transparent 100%);
+      opacity: 0.7; transition: opacity 0.4s;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
+    }
+    .cat-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .cat-sub {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-top: 0.3rem;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--dark-brown); padding: 5rem 4rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    }
+    .feat {
+      text-align: center; padding: 2rem 1rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      transition: border-color 0.3s;
+    }
+    .feat:hover { border-color: var(--gold); }
+    .feat-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--cream); margin-bottom: 0.5rem;
+    }
+    .feat-text { font-size: 0.8rem; color: rgba(245,240,232,0.5); line-height: 1.7; }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+    .about-visual {
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem; position: relative; overflow: hidden;
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(201,168,76,0.05) 10px, rgba(201,168,76,0.05) 20px);
+    }
+    .about-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12rem; font-weight: 300; color: var(--sand);
+      line-height: 1; position: relative; z-index: 1; user-select: none;
+    }
+    .about-number span { color: var(--gold); }
+    .about-content {
+      padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-content .section-header { text-align: left; padding: 0 0 2rem; }
+    .about-content .section-line { margin: 1.5rem 0 0; }
+    .about-text {
+      margin-top: 1.5rem; font-size: 0.95rem; line-height: 1.9;
+      color: #555; font-weight: 300;
+    }
+    .about-highlights {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .highlight {
+      padding: 1.2rem; border-left: 2px solid var(--gold);
+      background: var(--cream);
+    }
+    .highlight-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--dark-brown); font-weight: 300;
+    }
+    .highlight-label { font-size: 0.72rem; letter-spacing: 0.2em; color: #888; text-transform: uppercase; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--cream); padding: 5rem 4rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 3rem auto 0; }
+    .contact-info h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+      color: var(--dark-brown); margin-bottom: 1.5rem;
+    }
+    .contact-detail {
+      display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.2rem;
+    }
+    .contact-icon { font-size: 1.1rem; margin-top: 0.1rem; }
+    .contact-text { font-size: 0.9rem; line-height: 1.7; color: #555; }
+    .contact-text strong { color: var(--dark-brown); font-weight: 500; display: block; margin-bottom: 0.2rem; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--linen); background: var(--white);
+      font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--charcoal);
+      outline: none; transition: border-color 0.3s;
+      width: 100%;
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+      border-color: var(--gold);
+    }
+    .contact-form textarea { height: 100px; resize: none; }
+    .contact-form button {
+      background: var(--dark-brown); color: var(--cream);
+      padding: 1rem 2rem; border: none; cursor: pointer;
+      font-family: 'Jost', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.3s; align-self: flex-start;
+    }
+    .contact-form button:hover { background: var(--warm-brown); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark-brown); padding: 3rem 4rem 2rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand .nav-logo { font-size: 1.8rem; display: block; margin-bottom: 0.8rem; color: var(--cream); }
+    .footer-brand .nav-logo span { color: var(--gold); }
+    .footer-brand p { font-size: 0.82rem; color: rgba(245,240,232,0.5); line-height: 1.8; }
+    .footer-col h4 {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.6rem; }
+    .footer-col a {
+      text-decoration: none; font-size: 0.85rem; color: rgba(245,240,232,0.6);
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--cream); }
+    .footer-bottom {
+      grid-column: 1 / -1; border-top: 1px solid rgba(201,168,76,0.2);
+      padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(245,240,232,0.3); }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 99;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: pulse 2.5s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+      50%  { box-shadow: 0 4px 16px rgba(37,211,102,0.0), 0 0 0 12px rgba(37,211,102,0.08); }
+      100% { box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float { bottom: 1.2rem; right: 1.2rem; width: 52px; height: 52px; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); } to { transform: translateX(-50%); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 50vh; }
+      .hero-left::before { display: none; }
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+      .features { grid-template-columns: repeat(2, 1fr); padding: 3rem 2rem; }
+      .about { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .categories { padding: 1rem; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-left { padding: 3rem 1.5rem; }
+      .features { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+      .about-content { padding: 3rem 1.5rem; }
+      .contact { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">KUBERA <span>LINEN</span></a>
+    <ul class="nav-links">
+      <li><a href="#categories">Collections</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://wa.me/919700509654" target="_blank" class="nav-cta">Chat on WhatsApp</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">✦ Premium Menswear · Telangana</p>
+      <h1 class="hero-title">Dressed in<br/><em>Distinction</em></h1>
+      <p class="hero-subtitle">Fine suiting, pure linen, and premium shirting — curated for the modern man who values quality and craftsmanship above all.</p>
+      <div class="hero-btns">
+        <a href="#categories" class="btn-primary">Explore Collection</a>
+        <a href="#contact" class="btn-outline">Visit Us</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="fabric-swatch-stack">
+          <div class="swatch swatch-1"></div>
+          <div class="swatch swatch-2"></div>
+          <div class="swatch swatch-3"></div>
+          <div class="swatch swatch-4"></div>
+          <div class="swatch swatch-5"></div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-inner">Pure<br/>Quality</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-item">Suiting Fabric</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Premium Shirting</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Pure Linen</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Readymade Shirts</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Inners & Essentials</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Suiting Fabric</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Premium Shirting</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Pure Linen</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Readymade Shirts</span><span class="marquee-dot">✦</span>
+      <span class="marquee-item">Inners & Essentials</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section id="categories">
+    <div class="section-header">
+      <p class="section-tag">✦ What We Offer</p>
+      <h2 class="section-title">Our <em>Collections</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="categories">
+      <div class="categories-grid">
+
+        <div class="cat-card">
+          <div class="cat-img cat-bg-1">
+            <span class="cat-icon">🧥</span>
+          </div>
+          <div class="cat-overlay">
+            <p class="cat-name">Suiting</p>
+            <p class="cat-sub">Explore Range</p>
+          </div>
+        </div>
+
+        <div class="cat-card">
+          <div class="cat-img cat-bg-2">
+            <span class="cat-icon">👔</span>
+          </div>
+          <div class="cat-overlay">
+            <p class="cat-name">Shirting</p>
+            <p class="cat-sub">Explore Range</p>
+          </div>
+        </div>
+
+        <div class="cat-card">
+          <div class="cat-img cat-bg-3">
+            <span class="cat-icon">🌿</span>
+          </div>
+          <div class="cat-overlay">
+            <p class="cat-name">Linen</p>
+            <p class="cat-sub">Explore Range</p>
+          </div>
+        </div>
+
+        <div class="cat-card">
+          <div class="cat-img cat-bg-4">
+            <span class="cat-icon">👕</span>
+          </div>
+          <div class="cat-overlay">
+            <p class="cat-name">Readymade Shirts</p>
+            <p class="cat-sub">Explore Range</p>
+          </div>
+        </div>
+
+        <div class="cat-card">
+          <div class="cat-img cat-bg-5">
+            <span class="cat-icon">🧦</span>
+          </div>
+          <div class="cat-overlay">
+            <p class="cat-name">Inners</p>
+            <p class="cat-sub">Explore Range</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feat">
+      <div class="feat-icon">🏆</div>
+      <h3 class="feat-title">Premium Quality</h3>
+      <p class="feat-text">Handpicked fabrics sourced from the finest mills, ensuring superior texture and durability.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">✂️</div>
+      <h3 class="feat-title">Expert Tailoring</h3>
+      <p class="feat-text">Custom stitching and tailoring services available to ensure a perfect fit every time.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">💎</div>
+      <h3 class="feat-title">Wide Range</h3>
+      <p class="feat-text">From casual linen to formal suiting — everything a well-dressed man needs, under one roof.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🤝</div>
+      <h3 class="feat-title">Trusted Since Years</h3>
+      <p class="feat-text">A store built on trust, relationships, and a passion for genuine menswear excellence.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="about-visual">
+      <div class="about-number">K<span>L</span></div>
+    </div>
+    <div class="about-content">
+      <div class="section-header">
+        <p class="section-tag">✦ Our Story</p>
+        <h2 class="section-title">The <em>Kubera</em><br/>Promise</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="about-text">
+        At Kubera Linen Store, we believe every man deserves to feel confident and refined. Located in the heart of Telangana, we've been dressing men with care — offering premium fabrics and readymade menswear that blend comfort, quality, and style.
+      </p>
+      <p class="about-text" style="margin-top: 1rem;">
+        Whether you're choosing fabric for a custom suit or picking up a crisp linen shirt for a weekend outing, our team is here to help you find exactly what you need.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight">
+          <div class="highlight-num">5+</div>
+          <div class="highlight-label">Product Categories</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-num">100%</div>
+          <div class="highlight-label">Premium Fabrics</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-num">1000+</div>
+          <div class="highlight-label">Happy Customers</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-num">∞</div>
+          <div class="highlight-label">Style Possibilities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="section-header">
+      <p class="section-tag">✦ Find Us</p>
+      <h2 class="section-title">Visit Our <em>Store</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>We'd Love to See You</h3>
+        <div class="contact-detail">
+          <span class="contact-icon">📍</span>
+          <div class="contact-text">
+            <strong>Address</strong>
+            Kubera Linen Store, Telangana, India
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">🕐</span>
+          <div class="contact-text">
+            <strong>Store Hours</strong>
+            Monday – Saturday: 10:00 AM – 8:00 PM<br/>
+            Sunday: 11:00 AM – 6:00 PM
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">📞</span>
+          <div class="contact-text">
+            <strong>Phone / WhatsApp</strong>
+            <a href="tel:+919700509654" style="color:#8b6f47;text-decoration:none;">+91 97005 09654</a>
+            &nbsp;·&nbsp;
+            <a href="https://wa.me/919700509654" target="_blank" style="color:#25D366;text-decoration:none;font-weight:500;">Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">👗</span>
+          <div class="contact-text">
+            <strong>Speciality</strong>
+            Suiting · Shirting · Linen · Readymade Shirts · Inners
+          </div>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <input type="text" id="cf-name" placeholder="Your Name" required/>
+            <input type="tel" id="cf-phone" placeholder="Phone Number" required/>
+          </div>
+          <select id="cf-category">
+            <option value="">I'm interested in...</option>
+            <option>Suiting Fabric</option>
+            <option>Shirting Fabric</option>
+            <option>Linen Fabric</option>
+            <option>Readymade Shirts</option>
+            <option>Inners</option>
+            <option>General Inquiry</option>
+          </select>
+          <textarea id="cf-message" placeholder="Message (optional)"></textarea>
+          <button type="submit">Send via WhatsApp →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">KUBERA <span>LINEN</span></a>
+      <p>Premium menswear fabrics and readymade garments. Crafted for the man who values quality.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#categories">Suiting</a></li>
+        <li><a href="#categories">Shirting</a></li>
+        <li><a href="#categories">Linen</a></li>
+        <li><a href="#categories">Readymade Shirts</a></li>
+        <li><a href="#categories">Inners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Store</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Visit Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Location</h4>
+      <ul>
+        <li><a href="#">Telangana, India</a></li>
+        <li><a href="#">Mon–Sat: 10am–8pm</a></li>
+        <li><a href="#">Sun: 11am–6pm</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Kubera Linen Store. All rights reserved.</p>
+      <p>Made with ♥ in Telangana</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/919700509654?text=Hi%2C%20I'm%20interested%20in%20your%20products%20at%20Kubera%20Linen%20Store" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" fill="white"><path d="M16.04 0C7.18 0 0 7.16 0 15.98c0 2.84.75 5.5 2.06 7.81L0 32l8.44-2.21A16 16 0 0 0 16.04 32C24.9 32 32 24.84 32 16.02 32 7.16 24.9 0 16.04 0zm0 29.27c-2.4 0-4.7-.63-6.7-1.82l-.48-.28-4.99 1.31 1.33-4.86-.31-.5a13.18 13.18 0 0 1-2.04-7.1c0-7.32 5.96-13.27 13.2-13.27 7.23 0 13.18 5.95 13.18 13.27 0 7.32-5.95 13.25-13.19 13.25zm7.23-9.91c-.4-.2-2.36-1.16-2.72-1.3-.37-.13-.64-.2-.9.2-.27.4-1.03 1.3-1.27 1.56-.23.27-.47.3-.87.1-2.36-1.18-3.9-2.1-5.46-4.78-.41-.7.41-.65 1.18-2.16.13-.27.06-.5-.07-.7-.13-.2-.9-2.16-1.23-2.96-.33-.78-.66-.68-.9-.69-.23-.01-.5-.01-.77-.01-.27 0-.7.1-1.07.5-.37.4-1.4 1.37-1.4 3.33 0 1.96 1.43 3.86 1.63 4.13.2.27 2.76 4.23 6.7 5.76 3.94 1.53 3.94 1.02 4.65.96.7-.07 2.27-.93 2.59-1.82.32-.9.32-1.66.23-1.82-.1-.17-.36-.27-.76-.47z"/></svg>
+  </a>
+
+  <script>
+    // Smooth nav shadow on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.boxShadow = window.scrollY > 20 ? '0 4px 20px rgba(0,0,0,0.08)' : 'none';
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.cat-card, .feat, .highlight, .contact-detail').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Form submit -> redirect to WhatsApp with prefilled message
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('cf-name').value;
+      const phone = document.getElementById('cf-phone').value;
+      const category = document.getElementById('cf-category').value || 'General Inquiry';
+      const message = document.getElementById('cf-message').value || 'No additional message';
+
+      const text = `Hello Kubera Linen Store!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AInterested in: ${encodeURIComponent(category)}%0AMessage: ${encodeURIComponent(message)}`;
+
+      const btn = e.target.querySelector('button');
+      btn.textContent = '✓ Opening WhatsApp...';
+      btn.style.background = '#25D366';
+
+      setTimeout(() => {
+        window.open(`https://wa.me/919700509654?text=${text}`, '_blank');
+        btn.textContent = 'Send via WhatsApp →';
+        btn.style.background = '';
+        e.target.reset();
+      }, 600);
+    }
+  </script>
+</body>
+</html>
